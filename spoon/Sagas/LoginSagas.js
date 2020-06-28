@@ -11,6 +11,7 @@ export function* loginRequest (client, {query}) {
         const token = R.pathOr("", ['data', 'data', 'loginWithEmail', 'token'], response)
 
         if(token) {
+            client.setHeader(token)
             yield put(LoginActions.loginRequestSuccess(token))
         } else {
             yield put(LoginActions.loginRequestFailed('Something went wrong!'))

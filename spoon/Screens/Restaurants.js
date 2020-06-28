@@ -5,17 +5,16 @@ import {
   Alert
 } from 'react-native';
 
-import Input from '../Components/Input';
-import Button from '../Components/Button'
-import Busy from '../Components/Busy'
 import { connect } from 'react-redux';
 import Colors from '../Utils/ColorPalette'
-import { loginWithEmail } from '../Api/QueryProvider'
+import { restaurants } from '../Api/QueryProvider'
 
 
-MainScreen = () => {
+Restaurants = ({dispatch}) => {
 
+  const query = restaurants(0, 10)
 
+  dispatch({type: "RESTAURANTS_REQUEST", query})
 
   return (
     <View style={styles.container}>
@@ -49,4 +48,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(MainScreen)
+export default connect(mapStateToProps)(Restaurants)

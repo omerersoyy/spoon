@@ -1,6 +1,4 @@
 
-import { gql } from "apollo-boost";
-
 export const loginWithEmail = (email, password) => {
     return (
         `mutation
@@ -12,9 +10,23 @@ export const loginWithEmail = (email, password) => {
     )
 }
 
+export const restaurants = (index, limit) => {
+    return (
+        `query {
+            restaurants (showOffline: true, index: ${index}, limit: ${limit}, delivery: false){
+              name
+              open
+              types{
+                name
+              }
+            }
+          }`
+    )
+}
+
 export const pastOrders = (index, limit) => {
     return (
-        gql`pastOrders (index: ${index}, limit: ${limit}) {
+        `pastOrders (index: ${index}, limit: ${limit}) {
                 total
                 items {
                     name

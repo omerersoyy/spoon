@@ -3,15 +3,14 @@ import { createActions, createReducer } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
-    loginRequest: ['email', 'password'],
+    loginRequest: ['query'],
     loginRequestSuccess: ['token'],
     loginRequestError: ['error'],
     loginRequestFailed: ['message']
 })
 
 const initialState = Immutable({
-    email: "",
-    password: "",
+    query: "",
     token: "",
     error: "",
     message: "",

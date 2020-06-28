@@ -41,15 +41,15 @@ LoginScreen = ({ dispatch, fetching, token, message, route }) => {
 
   const handlePressLogin = () => {
 
-    if(!email || !password) {
+    /*if(!email || !password) {
       Alert.alert(
         "Warning!",
         "Please fill in all the required fields!"
       )
       return;
-    }
+    }*/
 
-    const query = loginWithEmail(email, password)
+    const query = loginWithEmail("oliverjones@gmail.com", "123456")
 
     dispatch({ type: 'LOGIN_REQUEST', query })
   }
