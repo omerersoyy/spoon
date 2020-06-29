@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Colors.red[1]
+    backgroundColor: Colors.red[2]
   },
   input: {
     marginVertical: 17

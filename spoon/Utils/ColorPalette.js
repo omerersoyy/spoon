@@ -13,5 +13,9 @@ export default Colors = {
        1: '#b5b0af',
        2: '#aba6a6',
        3: '#757271'
+   },
+   green: {
+       1: '#21ff60',
+       2: '#10bd36'
    }
 }

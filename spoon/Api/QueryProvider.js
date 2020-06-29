@@ -27,13 +27,32 @@ export const restaurants = (index, limit) => {
 export const pastOrders = (index, limit) => {
     return (
         `pastOrders (index: ${index}, limit: ${limit}) {
-                total
-                items {
-                    name
-                }
-                restaurant {
-                    name
-                }
-            }`
+            total
+            userCanReOrder
+            items {
+              amount
+            }
+             restaurant {
+              name
+            }
+          }`
     )
 }
+
+export const user = () => {
+    return (
+        `user {
+            firstName
+            lastName
+            mobileNumber
+            profilePicture{
+              url
+            }
+            email
+            addresses {
+              addressLine1
+            }
+          }`
+    )
+}
+

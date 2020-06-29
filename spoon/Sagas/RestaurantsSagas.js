@@ -8,6 +8,7 @@ export function* restaurantsRequest (client, {query}) {
     const response = yield call(client.post, query)
     
     if(response.ok) {
-        console.log(response)
+        const list = R.pathOr([], ['data', 'data', 'restaurants'], response);
+        yield put(RestaurantsActions.restaurantsRequestSuccess(list))
     }
 }

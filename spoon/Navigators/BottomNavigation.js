@@ -46,7 +46,7 @@ const TabNavigation = () => {
       tabBarOptions={{
         activeBackgroundColor: Colors.white[1],
         style: {
-          backgroundColor: Colors.red[1],
+          backgroundColor: Colors.red[2],
         }
       }}>
       <Tab.Screen name={'Restaurants'} component={MainNavigation} />

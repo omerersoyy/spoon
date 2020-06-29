@@ -3,7 +3,8 @@ import rootSaga from '../Sagas/'
 import configureStore from './CreateStore'
 
 export const reducers = combineReducers({
-  login: require('./Login').reducer
+  login: require('./Login').reducer,
+  restaurants: require('./Restaurants').reducer
 })
 
 export default () => {
