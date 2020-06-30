@@ -6,7 +6,7 @@ const { Types, Creators } = createActions({
     userDetailRequest: ['query'],
     userDetailRequestSuccess: ['user'],
     userDetailRequestError: ['error'],
-    usersPastOrdersRequest: ['query'],
+    usersPastOrdersRequest: ['query', 'token'],
     usersPastOrdersRequestSuccess: ['list'],
     usersPastOrdersRequestError: ['error']
 })
@@ -14,7 +14,7 @@ const { Types, Creators } = createActions({
 const initialState = Immutable({
     query: "",
     fetching: false,
-    user: {},
+    user: null,
     list: [],
     error: ""
 })
@@ -34,7 +34,7 @@ export const userDetailRequestError = (state, { error }) => {
     return state.merge({fetching: initialState.fetching, error})
 }
 
-export const usersPastOrdersRequest = (state, { query }) => {
+export const usersPastOrdersRequest = (state, { query, token }) => {
     return state.merge({fetching: true, query})
 }
 

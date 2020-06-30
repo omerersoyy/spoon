@@ -5,13 +5,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
 import Colors from '../Utils/ColorPalette'
 import MainNavigation from '../Navigators/MainNavigation'
-import Restaurants from '../Screens/Restaurants'
-import PastOrders from '../Screens/PastOrders'
-import { restaurants } from '../Api/QueryProvider'
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigation = () => {
+const TabNavigation = ({initialParams}) => {
 
   return (
     <Tab.Navigator
@@ -32,8 +29,10 @@ const TabNavigation = () => {
 
           if (route.name === 'Restaurants') {
             iconName = 'restaurant';
-          } else if (route.name === 'PastOrders') {
+          } else if (route.name === 'Past Orders') {
             iconName = 'av-timer';
+          } else if (route.name === 'Profile') {
+            iconName = 'person'
           }
 
           return (
@@ -53,7 +52,8 @@ const TabNavigation = () => {
         }
       }}>
       <Tab.Screen name={'Restaurants'} component={MainNavigation} />
-      <Tab.Screen name={'PastOrders'} component={MainNavigation} />
+      <Tab.Screen name={'Past Orders'} component={MainNavigation}/>
+      <Tab.Screen name={'Profile'} component={MainNavigation} initialParams={initialParams} />
     </Tab.Navigator>
   );
 };

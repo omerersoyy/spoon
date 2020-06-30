@@ -11,7 +11,7 @@ export const reducers = combineReducers({
 export default () => {
   let finalReducers = reducers
 
-  let { store, sagasManager, sagaMiddleware } = configureStore(finalReducers, rootSaga)
+  let { store, sagasManager, sagaMiddleware, persistor } = configureStore(finalReducers, rootSaga)
 
   if (module.hot) {
     module.hot.accept(() => {
@@ -26,5 +26,8 @@ export default () => {
     })
   }
 
-  return store
+  return {
+    store,
+    persistor
+  }
 }

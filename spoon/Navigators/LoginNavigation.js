@@ -11,7 +11,7 @@ export default LoginNavigation = () => {
   
   if (loggedIn) {
     return (
-      <BottomNavigation />
+      <BottomNavigation initialParams={{login: setLoggedIn}}/>
     );
   } else {
     return (

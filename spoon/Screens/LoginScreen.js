@@ -10,7 +10,7 @@ import Button from '../Components/Button'
 import Busy from '../Components/Busy'
 import { connect } from 'react-redux';
 import Colors from '../Utils/ColorPalette'
-import { loginWithEmail } from '../Api/QueryProvider'
+import { loginWithEmail, pastOrders } from '../Api/QueryProvider'
 
 
 LoginScreen = ({ dispatch, fetching, token, message, route }) => {
@@ -41,15 +41,15 @@ LoginScreen = ({ dispatch, fetching, token, message, route }) => {
 
   const handlePressLogin = () => {
 
-    /*if(!email || !password) {
+    if(!email || !password) {
       Alert.alert(
         "Warning!",
         "Please fill in all the required fields!"
       )
       return;
-    }*/
+    }
 
-    const query = loginWithEmail("oliverjones@gmail.com", "123456")
+    const query = loginWithEmail(email, password)
 
     dispatch({ type: 'LOGIN_REQUEST', query })
   }

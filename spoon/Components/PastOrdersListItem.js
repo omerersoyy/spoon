@@ -4,13 +4,14 @@ import Colors from '../Utils/ColorPalette'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default PastOrdersListItem = ({ restaurant, order, userCanReOrder }) => {
+    
 
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.item}>
-                <View>
-                    <Text style={styles.restaurant}>{restaurant.name}</Text>
-                    <Text style={styles.order}>
+                <View style={styles.orderDetail}>
+                    <Text style={styles.restaurant}>{restaurant}</Text>
+                    <Text numberOfLines={1} style={styles.order}>
                         {
                             order.length < 1 ? "..." :
                                 order.map((val, idx) => val.name).reduce((pre, curr) => {
@@ -22,12 +23,15 @@ export default PastOrdersListItem = ({ restaurant, order, userCanReOrder }) => {
                 </View>
 
                 {userCanReOrder &&
-                    <TouchableOpacity>
+                    <TouchableOpacity style={styles.reorder}>
                         <Icon
                             name={'replay'}
                             size={30}
                             color={Colors.green[2]}
                             style={styles.icon} />
+                        <Text style={{ fontSize: 11 }}>
+                            {'reorder'}
+                        </Text>
                     </TouchableOpacity>
                 }
             </TouchableOpacity>
@@ -49,6 +53,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
+    orderDetail: {
+        width: '90%'
+    },  
     restaurant: {
         fontWeight: "600",
         fontSize: 13,
@@ -60,6 +67,10 @@ const styles = StyleSheet.create({
         fontStyle: 'italic'
     },
     icon: {
-        alignSelf: 'flex-end'
+        alignSelf: 'center',
+    },
+    reorder: {
+        alignSelf: 'flex-end',
+        justifyContent: 'center',
     }
 });

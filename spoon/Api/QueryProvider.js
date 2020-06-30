@@ -44,7 +44,8 @@ export const pastOrders = (index, limit) => {
 
 export const user = () => {
     return (
-        `user {
+        `query {
+          user {
             firstName
             lastName
             mobileNumber
@@ -55,7 +56,8 @@ export const user = () => {
             addresses {
               addressLine1
             }
-          }`
+          }
+        }`
     )
 }
 

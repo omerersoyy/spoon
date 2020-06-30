@@ -6,7 +6,8 @@ const { Types, Creators } = createActions({
     loginRequest: ['query'],
     loginRequestSuccess: ['token'],
     loginRequestError: ['error'],
-    loginRequestFailed: ['message']
+    loginRequestFailed: ['message'],
+    logout: null
 })
 
 const initialState = Immutable({
@@ -36,9 +37,14 @@ export const loginRequestFailed = (state, {message}) => {
     return state.merge({message, fetching: initialState.fetching, message})
 }
 
+export const logout = (state) => {
+    return state.merge({token: initialState.token})
+}
+
 export const reducer = createReducer(initialState, {
     [Types.LOGIN_REQUEST]: loginRequest,
     [Types.LOGIN_REQUEST_SUCCESS]: loginRequestSuccess,
     [Types.LOGIN_REQUEST_ERROR]: loginRequestError,
-    [Types.LOGIN_REQUEST_FAILED]: loginRequestFailed
+    [Types.LOGIN_REQUEST_FAILED]: loginRequestFailed,
+    [Types.LOGOUT]: logout
 })

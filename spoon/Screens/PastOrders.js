@@ -7,12 +7,12 @@ import {
 
 import { connect } from 'react-redux';
 import Colors from '../Utils/ColorPalette'
-import { pastOrders, restaurants } from '../Api/QueryProvider'
+import { pastOrders } from '../Api/QueryProvider'
 import PastOrdersListItem from '../Components/PastOrdersListItem'
 import Busy from '../Components/Busy'
 
 
-PastOrders = ({ dispatch, list, fetching }) => {
+PastOrders = ({ dispatch, list, fetching, token }) => {
 
   const [index, setIndex] = useState(0)
   const [limit, setLimit] = useState(15)
@@ -22,13 +22,14 @@ PastOrders = ({ dispatch, list, fetching }) => {
   useEffect(() => {
     const query = pastOrders(index, limit)
 
-    dispatch({ type: "USERS_PAST_ORDERS_REQUEST", query })
+    dispatch({ type: "USERS_PAST_ORDERS_REQUEST", query, token })
+
   }, [])
 
   useEffect(() => {
     const query = pastOrders(index, limit)
 
-    dispatch({ type: "USERS_PAST_ORDERS_REQUEST", query })
+    dispatch({ type: "USERS_PAST_ORDERS_REQUEST", query, token })
 
   }, [index])
 
@@ -37,33 +38,34 @@ PastOrders = ({ dispatch, list, fetching }) => {
   }, [fetching])
 
   useEffect(() => {
-    setPastOrdersList(pastOrdersList.concat(list))
+    if(list.length > 0) setPastOrdersList(pastOrdersList.concat(list))
   }, [list])
 
-  const renderRow = ({restaurant, items, userCanReOrder}) => {
+  const renderRow = ({ restaurant, items, userCanReOrder }) => {
     return (
-      <PastOrdersListItem restaurant={restaurant} order={items} userCanReOrder={userCanReOrder} />
+      <PastOrdersListItem restaurant={restaurant.name} order={items} userCanReOrder={userCanReOrder} />
     )
   }
 
   const handleEndReached = () => {
-    setIndex(index + limit)
+    setIndex(index + limit + 1)
   }
+
 
   return (
     <View style={styles.container}>
 
       {busy && <Busy />}
 
-      <FlatList
-          style={styles.list}
-          data={pastOrdersList}
-          renderItem={({item}) => renderRow(item)}
-          keyExtractor={item => item.uid}
-          onEndReached={handleEndReached}
-          onEndReachedThreshold={0.9}
-          initialNumToRender={15}
-        />
+      {pastOrdersList.length > 0 && <FlatList
+        style={styles.list}
+        data={pastOrdersList}
+        renderItem={({ item }) => renderRow(item)}
+        keyExtractor={item => item.uid}
+        onEndReached={handleEndReached}
+        onEndReachedThreshold={0.9}
+        initialNumToRender={15}
+      />}
     </View>
   );
 }
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
   list: {
     width: '100%',
     paddingHorizontal: 9
-  },  
+  },
   input: {
     marginVertical: 17
   },
@@ -93,7 +95,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     list: state.user.list,
-    fetching: state.user.fetching
+    fetching: state.user.fetching,
+    token: state.login.token
   }
 }
 
