@@ -6,10 +6,9 @@ import PastOrders from '../Screens/PastOrders'
 
 const Stack = createStackNavigator();
 
-const MainNavigation = () => (
+const MainNavigation = ({route}) => (
   <Stack.Navigator headerMode={'screen'} initialRouteName={'Restaurants'}  >
-    <Stack.Screen name='Restaurants' component={Restaurants} />
-    <Stack.Screen name='PastOrders' component={PastOrders} />
+    <Stack.Screen name={route.name} component={route.name === "Restaurants" ? Restaurants : PastOrders} />
   </Stack.Navigator>
 );
 

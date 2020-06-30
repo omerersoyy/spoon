@@ -4,7 +4,8 @@ import configureStore from './CreateStore'
 
 export const reducers = combineReducers({
   login: require('./Login').reducer,
-  restaurants: require('./Restaurants').reducer
+  restaurants: require('./Restaurants').reducer,
+  user: require('./User').reducer
 })
 
 export default () => {

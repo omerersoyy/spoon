@@ -26,16 +26,19 @@ export const restaurants = (index, limit) => {
 
 export const pastOrders = (index, limit) => {
     return (
-        `pastOrders (index: ${index}, limit: ${limit}) {
+        `query {
+          pastOrders (index: ${index}, limit: ${limit}) {
+            uid
             total
             userCanReOrder
             items {
-              amount
+              name
             }
              restaurant {
               name
             }
-          }`
+          }
+        }`
     )
 }
 

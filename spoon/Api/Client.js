@@ -13,31 +13,24 @@ const createClient = () => {
     })
 
     const setHeader = (token) => {
-        client.request = (operation) => {
-            operation.setContext({
-                headers: {
-                    authorization: `Bearer ${token}`
-                }
-            })
-        }
+        client.headers.Authorization = `Bearer ${token}`
     }
 
-    const mutate = (query) => {
-        client
-            .mutate({
-                mutation: query
-            })
-    }
 
     const post = (query) => client.post(client.baseURL, {
             query: query
         }
     )
 
+    const get = (query) => client.get(client.baseURL, {
+        query: query
+    }
+)
+
     return {
         client,
         setHeader,
-        mutate,
+        get,
         post
     }
 }

@@ -5,6 +5,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { connect } from 'react-redux'
 import Colors from '../Utils/ColorPalette'
 import MainNavigation from '../Navigators/MainNavigation'
+import Restaurants from '../Screens/Restaurants'
+import PastOrders from '../Screens/PastOrders'
+import { restaurants } from '../Api/QueryProvider'
 
 const Tab = createBottomTabNavigator();
 
